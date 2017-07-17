@@ -1,0 +1,14 @@
+Clear[spring];
+Clear[atom];
+Clear[x];
+Clear[u];
+atom=Graphics3D[{Sphere[{0,0,0.8},1],Sphere[{0,0,6.5},1]},Background->Black];
+spring=ParametricPlot3D[{-0.25 Sin[u ],0.25 Cos[u ],0.13 u},{u,0, 8  2 Pi},PlotStyle->{Tube[0.025]},Background->Black];
+Manipulate[
+	Graphics3D[
+		{GeometricTransformation[
+			spring[[1]],Composition[RotationTransform[-1.6 Pi,{1,0,0}],RotationTransform[x Pi,{0,1,0}]]],
+		GeometricTransformation[
+			atom[[1]],Composition[RotationTransform[-1.6 Pi,{1,0,0}],RotationTransform[x Pi,{0,1,0}]]]},
+	Boxed->False,ImageSize->{300,450},PlotRange->Automatic,Background->Black]
+,{{x,0,"Play"},-1,1},SaveDefinitions->True]
